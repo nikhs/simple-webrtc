@@ -9,6 +9,7 @@ const btnLoadSession = document.querySelector('#btn-load-session');
 
 const localSessionData = document.querySelector('#local-session-data');
 const inputRemoteSessionData = document.querySelector('#input-remote-session-data');
+const inputIceCandidate = document.querySelector('#input-ice-candidate');
 
 const radioSessionTypeOffer = document.querySelector('#radio-session-type-offer');
 const radioSessionTypeAnswer = document.querySelector('#radio-session-type-answer');
@@ -103,6 +104,35 @@ btnLoadSession.onclick = function(event) {
                 });
         }
     });
+}
+
+pc.ontrack = function(event){
+    trace('OnTrack event, ' , event);
+    if (event.streams){
+        remoteVideo.srcObject = event.streams[0];
+    }
+}
+
+inputIceCandidate.oninput = function(event){
+  //  try {
+        obj = JSON.parse(inputIceCandidate.value);
+        obj.__proto__ = RTCIceCandidate.prototype;
+
+        trace('Parsed ICE Candidate: ', obj);
+
+        pc.addIceCandidate(obj)
+        .then(() => trace('ICE Candidate added to Peer connection: ', obj));
+    // } catch (error) {
+    //     //Ignore
+    //     trace('Exception Parsing ICE Candidate: ', error);
+    // }
+}
+
+pc.onicecandidate = function(event) {
+    if (event.candidate){
+        trace('Received ICE Candidate: ', event.candidate);
+        inputIceCandidate.value = JSON.stringify(event.candidate);
+    }
 }
 
 // Util functions
