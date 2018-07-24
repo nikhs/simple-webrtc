@@ -17,7 +17,9 @@
         <![endif]-->
         
         <div>
+            <label for="local-video">Local Video:</label>
             <video id='local-video' controls muted autoplay></video>
+            <label for="remote-video">Remote Video:</label>
             <video id='remote-video' controls muted autoplay></video>
         </div>
 
@@ -28,15 +30,26 @@
 
         <div>
             <span>
-                <p id="local-session-data" class="instructions">Local Session data will populate here!</p>
+                <pre id="local-session-data" class="instructions">Local Session data will populate here!</pre>
                 <!-- <button id="btn-create-session">Create Session data!</button> -->
             </span>
 
             <hr/>
 
             <span>
+                <p>Session Type: </p>
+
+                <input type="radio" name="radio-session-type" id="radio-session-type-offer" value="offer" checked/>
+                <label for="radio-session-type-offer">Offer</label>
+
+                <input type="radio" name="radio-session-type" id="radio-session-type-answer" value="answer"/>
+                <label for="radio-session-type-answer">Answer</label>
+
+            </span>
+            <br/>
+            <span>
                 <label for="input-remote-session-data">Enter remote session data here:</label>
-                <input type="text" id="input-remote-session-data">
+                <textarea id="input-remote-session-data"></textarea>
                 <button id="btn-load-session">Load Session data!</button>                
             </span>
             
