@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>WebRTC - Test 2</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style/main.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <div>
+            <video id='local-video' controls muted autoplay></video>
+            <video id='remote-video' controls muted autoplay></video>
+        </div>
+
+        <div>
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>    
+        </div>
+
+        <div>
+            <span>
+                <p id="local-session-data" class="instructions">Local Session data will populate here!</p>
+                <!-- <button id="btn-create-session">Create Session data!</button> -->
+            </span>
+
+            <hr/>
+
+            <span>
+                <label for="input-remote-session-data">Enter remote session data here:</label>
+                <input type="text" id="input-remote-session-data">
+                <button id="btn-load-session">Load Session data!</button>                
+            </span>
+            
+
+        </div>
+
+        <script src="js/main.js" async defer></script>
+    </body>
+</html>
