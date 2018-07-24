@@ -18,9 +18,9 @@
         
         <div>
             <label for="local-video">Local Video:</label>
-            <video id='local-video' controls muted autoplay></video>
+            <video id='local-video' width="200px" height="100px" controls muted autoplay></video>
             <label for="remote-video">Remote Video:</label>
-            <video id='remote-video' controls muted autoplay></video>
+            <video id='remote-video' width="200px" height="100px" controls muted autoplay></video>
         </div>
 
         <div>
@@ -34,7 +34,7 @@
                 <!-- <button id="btn-create-session">Create Session data!</button> -->
             </span>
 
-            <hr/>
+            <hr>
 
             <span>
                 <p>Session Type: </p>
@@ -53,7 +53,13 @@
                 <button id="btn-load-session">Load Session data!</button>                
             </span>
             
-            <hr/>
+            <hr>
+
+            <span>
+                <pre id="local-ice-candidate" class="instructions">Local Candidate data will populate here!</pre>
+            </span>
+
+            <hr>
 
             <span>
                 <label for="input-ice-candidate">Ice Candidate: </label>
@@ -62,6 +68,9 @@
 
         </div>
 
+        <div class="error">
+            
+        </div>
         <script src="js/main.js" async defer></script>
     </body>
 </html>

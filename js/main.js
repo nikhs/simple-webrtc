@@ -9,6 +9,7 @@ const btnLoadSession = document.querySelector('#btn-load-session');
 
 const localSessionData = document.querySelector('#local-session-data');
 const inputRemoteSessionData = document.querySelector('#input-remote-session-data');
+const localIceCandidate = document.querySelector('#local-ice-candidate');
 const inputIceCandidate = document.querySelector('#input-ice-candidate');
 
 const radioSessionTypeOffer = document.querySelector('#radio-session-type-offer');
@@ -114,7 +115,6 @@ pc.ontrack = function(event){
 }
 
 inputIceCandidate.oninput = function(event){
-  //  try {
         obj = JSON.parse(inputIceCandidate.value);
         obj.__proto__ = RTCIceCandidate.prototype;
 
@@ -122,16 +122,12 @@ inputIceCandidate.oninput = function(event){
 
         pc.addIceCandidate(obj)
         .then(() => trace('ICE Candidate added to Peer connection: ', obj));
-    // } catch (error) {
-    //     //Ignore
-    //     trace('Exception Parsing ICE Candidate: ', error);
-    // }
 }
 
 pc.onicecandidate = function(event) {
     if (event.candidate){
-        trace('Received ICE Candidate: ', event.candidate);
-        inputIceCandidate.value = JSON.stringify(event.candidate);
+        trace('Generated ICE Candidate: ', event.candidate);
+        localIceCandidate.innerHTML = JSON.stringify(event.candidate);
     }
 }
 
@@ -155,5 +151,8 @@ function getSessionType(){
 // Log helper.
 function trace(text, obj=null){
     console.log(text);
+    //err = document.querySelector('.error');
+    //t= document.createTextNode(text + '<br>');
+    //err.appendChild(t);
     if (obj != null) console.log(obj);
 }
