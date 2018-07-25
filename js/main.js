@@ -7,6 +7,9 @@ const btnStart = document.querySelector('#start');
 const btnStop = document.querySelector('#stop');
 const btnLoadSession = document.querySelector('#btn-load-session');
 
+const btnCopySession = document.querySelector('#btn-copy-session');
+const btnCopyIceCandidate = document.querySelector('#btn-copy-ice-candidate');
+
 const localSessionData = document.querySelector('#local-session-data');
 const inputRemoteSessionData = document.querySelector('#input-remote-session-data');
 const localIceCandidate = document.querySelector('#local-ice-candidate');
@@ -16,7 +19,7 @@ const radioSessionTypeOffer = document.querySelector('#radio-session-type-offer'
 const radioSessionTypeAnswer = document.querySelector('#radio-session-type-answer');
 
 const servers = null;
-const mediaConstraints = {audio:false, video:true};
+const mediaConstraints = {audio:true, video:false};
 
 trace('Creating RTCPeerConnection.');
 let pc = new RTCPeerConnection(servers);
@@ -131,6 +134,16 @@ pc.onicecandidate = function(event) {
     }
 }
 
+// Copy Events
+
+btnCopySession.onclick = function(event){
+    navigator.clipboard.writeText(localSessionData.innerHTML);
+}
+
+btnCopyIceCandidate.onclick = function(event){
+    navigator.clipboard.writeText(localIceCandidate.innerHTML);
+}
+
 // Util functions
 
 function stopAllStreamsFor(mediaElement){
@@ -151,8 +164,11 @@ function getSessionType(){
 // Log helper.
 function trace(text, obj=null){
     console.log(text);
-    //err = document.querySelector('.error');
-    //t= document.createTextNode(text + '<br>');
-    //err.appendChild(t);
+    
+    err = document.querySelector('.error');
+    t= document.createTextNode(text + '\n');
+    err.appendChild(t);
+    err.appendChild(document.createElement('br'));
+
     if (obj != null) console.log(obj);
 }
