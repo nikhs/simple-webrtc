@@ -19,7 +19,7 @@ const radioSessionTypeOffer = document.querySelector('#radio-session-type-offer'
 const radioSessionTypeAnswer = document.querySelector('#radio-session-type-answer');
 
 const servers = null;
-const mediaConstraints = {audio:true, video:false};
+const mediaConstraints = {audio:false, video:true};
 
 trace('Creating RTCPeerConnection.');
 let pc = new RTCPeerConnection(servers);
